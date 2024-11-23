@@ -88,6 +88,13 @@ class MainPage(tk.CTk):
         widget.destroy()
       self.list_books(filtered_books)
 
+  def show_orders(self):
+    for widget in self.book_cards_frame.winfo_children():
+      widget.destroy()
+    self.order_label=tk.CTkLabel(self.book_cards_frame,text="Order History",font=("Arial",32),text_color='#fff')
+    self.order_label.pack(side="top",fill='x',padx=10,pady=10,anchor="w")
+    self.main_button.configure(text="Main",command=lambda: self.list_books(self.book_info))
+
   def main_header(self):
     self.header_frame=tk.CTkFrame(self,corner_radius=10)
     self.header_frame.pack(fill="x",pady=20,padx=20)
@@ -102,16 +109,19 @@ class MainPage(tk.CTk):
     self.search_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.iconImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.search_books(self.search_entry.get()))
     self.search_button.pack(side="right",padx=10)
 
-    self.main_button=tk.CTkButton(self.header_frame,width=100,text="Order")
+    self.main_button=tk.CTkButton(self.header_frame,width=100,text="Orders",command=self.show_orders)
     self.main_button.pack(side='right',padx=10)
 
 
   def list_books(self,book_info):
+    for widget in self.book_cards_frame.winfo_children():
+      widget.destroy()
     row_counter=0
     current_row = tk.CTkFrame(self.book_cards_frame)
     current_row.pack(side="top", fill="x", padx=0, pady=10)
 
 
+    self.main_button.configure(text="Orders",command=self.show_orders)
     for book in book_info:
       self.book_card=BookCard(current_row,book)
       self.book_card.pack(side="left",padx=10,pady=10)
