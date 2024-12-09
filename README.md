@@ -5,6 +5,7 @@ This file specifies the Python libraries needed to run this program.
 ```
 customtkinter
 Pillow
+tkinter
 ```
 
 ## README.md
