@@ -1,0 +1,87 @@
+[
+  {
+    "id": "001",
+    "date": "2024-12-01",
+    "client_id": "100015001",
+    "book_id": "001",
+    "status": "active",
+    "order_type": "buy",
+    "price": 12.99
+  },
+  {
+    "id": "002",
+    "date": "2024-12-02",
+    "client_id": "100015002",
+    "book_id": "002",
+    "status": "inactive",
+    "order_type": "borrow"
+  },
+  {
+    "id": "003",
+    "date": "2024-12-03",
+    "client_id": "100015003",
+    "book_id": "003",
+    "status": "canceled",
+    "order_type": "buy",
+    "price": 10.99
+  },
+  {
+    "id": "004",
+    "date": "2024-12-04",
+    "client_id": "100015004",
+    "book_id": "004",
+    "status": "active",
+    "order_type": "borrow"
+  },
+  {
+    "id": "005",
+    "date": "2024-12-05",
+    "client_id": "100015005",
+    "book_id": "005",
+    "status": "inactive",
+    "order_type": "buy",
+    "price": 13.99
+  },
+  {
+    "id": "006",
+    "date": "2024-12-06",
+    "client_id": "100015006",
+    "book_id": "006",
+    "status": "active",
+    "order_type": "borrow"
+  },
+  {
+    "id": "007",
+    "date": "2024-12-07",
+    "client_id": "100015007",
+    "book_id": "007",
+    "status": "canceled",
+    "order_type": "buy",
+    "price": 12.49
+  },
+  {
+    "id": "008",
+    "date": "2024-12-08",
+    "client_id": "100015008",
+    "book_id": "008",
+    "status": "active",
+    "order_type": "borrow"
+  },
+  {
+    "id": "009",
+    "date": "2024-12-09",
+    "client_id": "100015009",
+    "book_id": "009",
+    "status": "inactive",
+    "order_type": "buy",
+    "price": 16.99
+  },
+  {
+    "id": "010",
+    "date": "2024-12-10",
+    "client_id": "100015010",
+    "book_id": "010",
+    "status": "active",
+    "order_type": "borrow"
+  }
+]
