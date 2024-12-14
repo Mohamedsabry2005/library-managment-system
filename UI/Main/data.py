@@ -1,5 +1,5 @@
 book_info = [
-    {'title': 'Python', 'author': 'China', 'category': 'Coding', 'image_path': 'Resources/data/books_imgs/To_Kill_a_Mockingbird.webp',"borrowed": True, "Bought": False},
+    {'title': 'Python', 'author': 'China', 'category': 'Coding', 'image_path': 'UI/Assets/Images/books/book.webp',"borrowed": True, "Bought": False},
     {'title': 'java', 'author': 'China', 'category': 'Coding', 'image_path': 'UI/Assets/Images/books/book.webp',"borrowed": True, "Bought": False},
     {'title': 'javascript', 'author': 'China', 'category': 'Coding', 'image_path': 'UI/Assets/Images/books/book.webp',"borrowed": True, "Bought": False},
     {'title': 'php', 'author': 'China', 'category': 'Coding', 'image_path': 'UI/Assets/Images/books/book.webp',"borrowed": True, "Bought": False},
