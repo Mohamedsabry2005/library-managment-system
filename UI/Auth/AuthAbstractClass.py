@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 class Auth(tk.CTk,ABC):
   def __init__(self):
     super().__init__()
+    self._set_appearance_mode('dark')
     self.title('Library App')
     self.geometry('1000x600')
     self.resizable(False, False)

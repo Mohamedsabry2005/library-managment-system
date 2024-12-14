@@ -33,12 +33,14 @@ class BookCard(tk.CTkFrame):
         self.buy_button = tk.CTkButton(self.book_details, text="Buy Now", width=80, height=20)
         self.buy_button.pack(side="right", expand=True, padx=10)
 
+        self.borrow_button.configure(state="disabled" if book_info["borrowed"] else "normal")
+        self.buy_button.configure(state="disabled" if book_info["Bought"] else "normal")
 
 
 class ClientMain(MainApp):
   def __init__(self):
     super().__init__()
-    self.books_per_row=4
+    self.books_per_row=5
     self.book_info=book_info
     self.create_header()
     self.create_content()
