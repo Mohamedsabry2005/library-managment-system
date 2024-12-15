@@ -61,6 +61,8 @@ class BookCard(tk.CTkFrame):
 class ClientMain(MainApp):
   def __init__(self,client):
     super().__init__()
+    self._set_appearance_mode("dark")
+
     self.client=client
     self.books_per_row=4
     self.book_info=recommend_books(self.client)

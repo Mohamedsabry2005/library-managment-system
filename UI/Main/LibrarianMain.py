@@ -63,6 +63,7 @@ class BookCard(tk.CTkFrame):
 class LibrarianMain(MainApp):
   def __init__(self,Librarian):
     super().__init__()
+    self._set_appearance_mode("dark")
     self.Librarian=Librarian
     self.books_per_row=3
     self.book_info=read_books()

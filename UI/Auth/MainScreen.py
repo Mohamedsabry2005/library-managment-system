@@ -6,6 +6,8 @@ class MainScreen(Auth):
   def __init__(self):
     super().__init__()
     self.show_main_screen()
+    self._set_appearance_mode('dark')
+
 
   def create_left_frame(self):
     return super().create_left_frame()
