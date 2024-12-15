@@ -9,17 +9,18 @@ current_folder = os.getcwd()
 print("Current Folder Path:", current_folder)
 sys.path.insert(2, current_folder)
 
-from Models.Client import Client
-from Models.Book import Book
-from Models.Librarian import Librarian
-from Models.Order import Order
+from Resources.Models.Client import Client
+from Resources.Models.Book import Book
+from Resources.Models.Librarian import Librarian
+from Resources.Models.Order import Order
 # from Models.Client import Client
 
 def read_clients():
-    with open("data\\clients.json", "r") as f:
+    with open("Resources/data/clients.json", "r") as f:
         clients_data = json.load(f)
     clients = [
         Client(
+            
             client["phone_num"],
             client["id"],
             client["name"],
@@ -38,7 +39,7 @@ def read_clients():
 
 def read_librarian():
 
-    with open("data\\librarians.json" ,"r") as f:
+    with open("Resources/data/librarians.json" ,"r") as f:
         librarians_data = json.load(f)
 
     librarians = [
@@ -57,7 +58,7 @@ def read_librarian():
     return librarians
 
 def read_orders():
-    with open("data\\orders.json", "r") as f:
+    with open("Resources/data/orders.json", "r") as f:
         orders_data = json.load(f)
 
     orders = [
@@ -76,7 +77,7 @@ def read_orders():
     return orders
 
 def read_books():
-    with open("data\\books.json", "r") as f:
+    with open("Resources/data/books.json", "r") as f:
         books_data = json.load(f)
 
     books = [
@@ -120,7 +121,7 @@ def dump_to_json(objects, file_path):
     with open(file_path, "w") as f:
         json.dump(serialized_data, f, indent=4)
 
-
+#done
 def user_sign_in(id:str):
     dataset = clients_data if id.startswith("1") else librarians_data if id.startswith("2") else None
     #  if not dataset:
@@ -208,7 +209,7 @@ def is_valid_egyptian_id(id_num):
     
 
     return True,
-
+#done
 def client_sign_up(phone_num,name,age,id_num ,address):
     # if is_valid_egyptian_id(id_num):
 
@@ -231,11 +232,11 @@ def client_sign_up(phone_num,name,age,id_num ,address):
         orders_num=0
     )
     clients_data.append(new_client)
-    dump_to_json(clients_data , "data/clients.json")
+    dump_to_json(clients_data , "Resources/data/clients.json")
     return new_client
     #show him his id
-
-def librarian_sing_up(name , age , id_num ,address , phone_num , emp_type):
+#done
+def librarian_sign_up(name , age , id_num ,address , phone_num , emp_type):
     # if is_valid_egyptian_id(id_num):
 
     # existing_librarian = next((librarian for librarian in librarians_data if librarian.id_num == id_num), None)
@@ -258,11 +259,13 @@ def librarian_sing_up(name , age , id_num ,address , phone_num , emp_type):
     librarians_data.append(new_librarian)
     dump_to_json(librarians_data , "data/librarians.json")
     return new_librarian
-    
+
 
 # The next() function is used to find the first book in the books list that matches the given book_id.
 # If a match is found, the next() function returns that book.
 # If no match is found, the iterator is exhausted, and the next() function returns the default value None.
+
+#done
 def borrow_book(client:Client, book_id):
     # Check if the client is valid
     # if not client:
@@ -296,11 +299,11 @@ def borrow_book(client:Client, book_id):
     client.orders_num += 1
     book.quantity -= 1
 
-    dump_to_json(clients_data , "data/clients.json")
-    dump_to_json(orders_data , "data/orders.json")
-    dump_to_json(books_data , "data/books.json")
+    dump_to_json(clients_data , "Resources/data/clients.json")
+    dump_to_json(orders_data , "Resources/data/orders.json")
+    dump_to_json(books_data , "Resources/data/books.json")
 
-  
+#done
 def buy_book(client:Client , book_id):
     book = next((book for book in books_data if book.get_Book_id() == book_id), None)
     # if not book.buyable:
@@ -325,10 +328,11 @@ def buy_book(client:Client , book_id):
     client.orders_num += 1
     book.quantity -= 1
 
-    dump_to_json(clients_data , "data/clients.json")
-    dump_to_json(orders_data , "data/orders.json")
-    dump_to_json(books_data , "data/books.json")
+    dump_to_json(clients_data , "Resources/data/clients.json")
+    dump_to_json(orders_data , "Resources/data/orders.json")
+    dump_to_json(books_data , "Resources/data/books.json")
 
+#done
 def client_orders(client:Client):
     return client.get_reading_history()
 
@@ -358,8 +362,8 @@ def add_book(title,description,author,status, categories , ISBN , image , price 
 def delete_book(book_id):
     book = next((book for book in books_data if book.get_Book_id() == book_id), None)
     books_data.remove(book)
-    dump_to_json(books_data , "data/books.json")
-
+    dump_to_json(books_data , "Resources/data/books.json")
+#done
 def show_all_orders():
     return orders_data
 
@@ -445,12 +449,11 @@ def recommend_books(client:Client):
     
     return recommended_books
 
-
+#done 
 def forget_id(id_num):
     for i in (clients_data + librarians_data):
         if i.get_id_num() == id_num:
             return i.get_id()
     else:
-        return None
-      
-    
+        return 'ID not found'
+

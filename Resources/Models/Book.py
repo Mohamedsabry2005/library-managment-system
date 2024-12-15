@@ -89,7 +89,7 @@ class Book:
             "description": self.description,
             "author": self.author,
             "status": self.status,
-            "category": self.category,
+            "categories": self.categories,
             "ISBN": self.ISBN,
             "image": self.image,
             "price": self.price,

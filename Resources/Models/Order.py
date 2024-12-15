@@ -40,10 +40,10 @@ class Order:
          self.status = status
 
     def get_order_type(self):
-         return self.oreder_type
+         return self.order_type
 
     def set_order_type(self, order_type):
-         self.oreder_type = order_type
+         self.order_type = order_type
 
     def get_price(self):
         return self.price

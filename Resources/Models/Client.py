@@ -1,5 +1,5 @@
-from Models.Human import Human
-from Models.Order import Order
+from Resources.Models.Human import Human
+from Resources.Models.Order import Order
 
 
 class Client(Human):

@@ -1,4 +1,4 @@
-from Models.Human import Human
+from Resources.Models.Human import Human
 
 
 class Librarian(Human):
