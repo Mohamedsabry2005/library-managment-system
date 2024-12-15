@@ -30,7 +30,7 @@
         "ISBN": "9780451524935",
         "image": "UI/Assets/Images/books/1984.webp",
         "price": 9.99,
-        "quantity": 10,
+        "quantity": 9,
         "borrowable": true,
         "buyable": false
     },
@@ -48,7 +48,7 @@
         "ISBN": "9780743273565",
         "image": "UI/Assets/Images/books/81QuEGw8VPL._AC_UF1000,1000_QL80_.webp",
         "price": 10.99,
-        "quantity": 12,
+        "quantity": 11,
         "borrowable": false,
         "buyable": true
     },
@@ -66,7 +66,7 @@
         "ISBN": "9780062316097",
         "image": "UI/Assets/Images/books/9780099590088.webp",
         "price": 18.99,
-        "quantity": 3,
+        "quantity": 2,
         "borrowable": true,
         "buyable": false
     },
@@ -102,7 +102,7 @@
         "ISBN": "9780735211292",
         "image": "UI/Assets/Images/books/81ANaVZk5LL.webp",
         "price": 17.99,
-        "quantity": 0,
+        "quantity": -1,
         "borrowable": true,
         "buyable": false
     },
@@ -426,7 +426,7 @@
         "ISBN": "9780142407332",
         "image": "UI/Assets/Images/books/71Bg39CmhoL.webp",
         "price": 8.99,
-        "quantity": 4,
+        "quantity": 3,
         "borrowable": true,
         "buyable": false
     },

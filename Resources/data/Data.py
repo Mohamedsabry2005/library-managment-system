@@ -337,7 +337,7 @@ def client_orders(client:Client):
     return client.get_reading_history()
 
 
-
+#done
 def add_book(title,description,author,status, categories , ISBN , image , price , quantity , borrowable:bool , buyable:bool):
     book_id = generate_numeric_id()
 
@@ -359,6 +359,7 @@ def add_book(title,description,author,status, categories , ISBN , image , price 
     books_data.append(new_book)
     dump_to_json(books_data , "data/books.json")
 
+#done
 def delete_book(book_id):
     book = next((book for book in books_data if book.get_Book_id() == book_id), None)
     books_data.remove(book)
@@ -367,7 +368,7 @@ def delete_book(book_id):
 def show_all_orders():
     return orders_data
 
-
+#done
 def binary_search_all_books_by_price(price):
     low, high = 0, len(books_sorted_data) - 1
     result = []
@@ -393,12 +394,12 @@ def binary_search_all_books_by_price(price):
 
             return result  # Return all matches
 
-        elif books_sorted_data[mid].get_Book_price() < price:
+        elif float(books_sorted_data[mid].get_Book_price()) < float(price):
             low = mid + 1
         else:
             high = mid - 1
 
-    return None  # No matches found
+    return []  # No matches found
 
 
 def recommend_books(client:Client):

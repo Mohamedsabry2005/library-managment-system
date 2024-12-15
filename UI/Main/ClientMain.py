@@ -1,7 +1,7 @@
 import customtkinter as tk
 from PIL import Image, ImageTk
 from UI.Main.MainAbstractClass import MainApp
-from Resources.data.Data import read_books,borrow_book,buy_book
+from Resources.data.Data import read_books,borrow_book,buy_book,binary_search_all_books_by_price,sorted_books,sorted_books_desc,recommend_books
 book_info=read_books()
 class BookCard(tk.CTkFrame):
     def __init__(self, parent, book_info,app, width=250, height=250, corner_radius=10, fg_color="#fff"):
@@ -28,6 +28,9 @@ class BookCard(tk.CTkFrame):
         self.category = tk.CTkLabel(self.book_details, text=f"Category: {", ".join(book_info.categories)}", font=("Arial", 14), text_color="#000",width=int(width / 13), wraplength=int(width * 0.8))
         self.category.pack(side='top', anchor='w', padx=10, pady=5)
 
+        self.price = tk.CTkLabel(self.book_details, text=f"{book_info.get_Book_price()} $", font=("Arial", 14), text_color="#000",width=int(width / 13), wraplength=int(width * 0.8))
+        self.price.pack(side='top', anchor='w', padx=10, pady=5)
+
         self.borrow_button = tk.CTkButton(self.book_details, text="Borrow Now",width=int(width / 2) - 10, height=20,command=self.borrow)
         self.borrow_button.pack(side="left", expand=True, anchor='w', padx=10)
 
@@ -47,12 +50,12 @@ class BookCard(tk.CTkFrame):
       toaster= Toaster(self, "Book borrowed successfully!")
       toaster.show()
       borrow_book(self.app.client,self.book_info.get_Book_id())
-      self.app.list_books(book_info)
+      self.borrow_button.configure(state="disabled")
     def buy(self):
       toaster= Toaster(self, "Book bought successfully!")
       toaster.show()
       buy_book(self.app.client,self.book_info.get_Book_id())
-      self.app.list_books(book_info)
+      self.buy_button.configure(state="disabled")
 
 
 class ClientMain(MainApp):
@@ -60,7 +63,7 @@ class ClientMain(MainApp):
     super().__init__()
     self.client=client
     self.books_per_row=4
-    self.book_info=read_books()
+    self.book_info=recommend_books(self.client)
     self.create_header()
     self.create_content()
 
@@ -77,9 +80,28 @@ class ClientMain(MainApp):
     self.iconImg=tk.CTkImage(Image.open("UI/Assets/Icons/searchIcon.png"),size=(20,20))
     self.search_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.iconImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.handle_search(self.search_entry.get()))
     self.search_button.pack(side="right",padx=10)
+    self.priceImg=tk.CTkImage(Image.open("UI/Assets/Icons/dollar.png"),size=(20,20))
+    self.price_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.priceImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.handle_search_price(self.search_entry.get()))
+    self.price_button.pack(side="right",padx=10)
 
     self.main_button=tk.CTkButton(self.header_frame,width=100,text="Orders",command=self.show_orders)
     self.main_button.pack(side='right',padx=10)
+
+    self.priceupImg=tk.CTkImage(Image.open("UI\Assets\Icons\sortup.png"),size=(20,20))
+    self.price_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.priceupImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.handle_sort("high"))
+    self.price_button.pack(side="right",padx=10)
+
+    self.priceDownImg=tk.CTkImage(Image.open("UI/Assets/Icons/sortdown.png"),size=(20,20))
+    self.price_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.priceDownImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.handle_sort("low"))
+    self.price_button.pack(side="right",padx=10)
+
+  def handle_sort(self,option):
+    if option=="high":
+      books=sorted_books()
+      self.list_books(books)
+    else:
+      books=sorted_books_desc()
+      self.list_books(books)
 
   def show_orders(self):
     for widget in self.book_cards_frame.winfo_children():
@@ -122,11 +144,30 @@ class ClientMain(MainApp):
       self.list_books(book_info)
     else:
       for book in self.book_info:
-          if search_term.lower() in book.title.lower():
+          if search_term.lower() in book.title.lower() :
             filtered_books.append(book)
+          else:
+            toaster= Toaster(self, "There is not a book with this price.")
+            toaster.show()
       self.book_info=filtered_books
       self.list_books(filtered_books)
 
+  def handle_search_price(self,search_term):
+    if search_term=="":
+      for widget in self.book_cards_frame.winfo_children():
+        widget.destroy()
+      self.list_books(book_info)
+    else:
+        try:
+          price=float(search_term)
+          books=binary_search_all_books_by_price(price)
+          if books:
+            self.list_books(books)
+          else:
+            toaster= Toaster(self, "There is not a book with this price.")
+            toaster.show()
+        except ValueError:
+          pass
 
 
   def list_books(self, book_info):

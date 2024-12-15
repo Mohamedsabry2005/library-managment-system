@@ -187,5 +187,49 @@
         "status": "active",
         "order_type": "buy",
         "price": 11.99
+    },
+    {
+        "id": "3150664604",
+        "date": "2024-12-15 15:22:43.145071",
+        "client_id": "100015001",
+        "book_id": "024",
+        "status": "active",
+        "order_type": "buy",
+        "price": 8.99
+    },
+    {
+        "id": "2209152367",
+        "date": "2024-12-15 15:23:31.743142",
+        "client_id": "100015001",
+        "book_id": "003",
+        "status": "active",
+        "order_type": "borrow"
+    },
+    {
+        "id": "1521675146",
+        "date": "2024-12-15 15:25:12.997644",
+        "client_id": "100015001",
+        "book_id": "002",
+        "status": "active",
+        "order_type": "buy",
+        "price": 9.99
+    },
+    {
+        "id": "2942958868",
+        "date": "2024-12-15 15:25:20.366030",
+        "client_id": "100015001",
+        "book_id": "004",
+        "status": "active",
+        "order_type": "buy",
+        "price": 18.99
+    },
+    {
+        "id": "7433836476",
+        "date": "2024-12-15 15:26:43.947987",
+        "client_id": "100015001",
+        "book_id": "006",
+        "status": "active",
+        "order_type": "buy",
+        "price": 17.99
     }
 ]
