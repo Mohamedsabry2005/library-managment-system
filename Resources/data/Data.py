@@ -357,7 +357,7 @@ def add_book(title,description,author,status, categories , ISBN , image , price 
     )
 
     books_data.append(new_book)
-    dump_to_json(books_data , "data/books.json")
+    dump_to_json(books_data , "Resources/data/books.json")
 
 #done
 def delete_book(book_id):

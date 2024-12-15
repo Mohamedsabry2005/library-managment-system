@@ -13,8 +13,8 @@
         "image": "UI/Assets/Images/books/To_Kill_a_Mockingbird.webp",
         "price": 12.99,
         "quantity": 8,
-        "borrowable": true,
-        "buyable": true
+        "borrowable": false,
+        "buyable": false
     },
     {
         "id": "002",

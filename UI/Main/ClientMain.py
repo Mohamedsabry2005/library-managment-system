@@ -77,7 +77,7 @@ class ClientMain(MainApp):
     self.greeting_label.pack(side="left",padx=10)
     self.search_frame=tk.CTkFrame(self.header_frame)
     self.search_frame.pack(side="left",expand=True)
-    self.search_entry=tk.CTkEntry(self.search_frame,placeholder_text='Enter book name',width=300,border_color="#000",text_color='#fff',border_width=3)
+    self.search_entry=tk.CTkEntry(self.search_frame,placeholder_text='Enter book name',width=300,border_color="#000",text_color='#36719f',border_width=3)
     self.search_entry.pack(side="left",padx=10,pady=10)
     self.iconImg=tk.CTkImage(Image.open("UI/Assets/Icons/searchIcon.png"),size=(20,20))
     self.search_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.iconImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.handle_search(self.search_entry.get()))
@@ -108,7 +108,7 @@ class ClientMain(MainApp):
   def show_orders(self):
     for widget in self.book_cards_frame.winfo_children():
       widget.destroy()
-    self.order_label=tk.CTkLabel(self.book_cards_frame,text="Order History",font=("Arial",32),text_color='#fff')
+    self.order_label=tk.CTkLabel(self.book_cards_frame,text="Order History",font=("Arial",32),text_color='#36719f')
     self.order_label.pack(side="top",fill='x',padx=10,pady=10,anchor="w")
     self.main_button.configure(text="Main",command=lambda: self.list_books(self.book_info))
     for order in self.client.reading_history:  

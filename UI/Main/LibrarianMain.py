@@ -2,7 +2,7 @@ import customtkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 from UI.Main.MainAbstractClass import MainApp
-from Resources.data.Data import read_books,show_all_orders,delete_book,add_book
+from Resources.data.Data import read_books,show_all_orders,delete_book,add_book,dump_to_json
 book_info=read_books()
 orders=show_all_orders()
 book_states={}
@@ -51,8 +51,11 @@ class BookCard(tk.CTkFrame):
             if book.get_Book_id() == name:
                 if state == 'buy':
                     book.set_Book_buyable(not book.get_Book_buyable()) 
+                    dump_to_json(book_info,"Resources/data/books.json")
                 elif state == "borrow":
                     book.set_Book_borrowable(not book.get_Book_borrowable())
+                    dump_to_json(book_info,"Resources/data/books.json")
+
                 book_states[name]={
                   'borrowed':book.get_Book_borrowable(),
                   'Bought':book.get_Book_buyable()
@@ -82,7 +85,7 @@ class LibrarianMain(MainApp):
     self.greeting_label.pack(side="left",padx=10)
     self.search_frame=tk.CTkFrame(self.header_frame)
     self.search_frame.pack(side="left",expand=True)
-    self.search_entry=tk.CTkEntry(self.search_frame,placeholder_text='enter ID',width=300,border_color="#000",text_color='#fff',border_width=3)
+    self.search_entry=tk.CTkEntry(self.search_frame,placeholder_text='enter ID',width=300,border_color="#000",text_color='#36719f',border_width=3)
     self.search_entry.pack(side="left",padx=10,pady=10)
     self.iconImg=tk.CTkImage(Image.open("UI/Assets/Icons/searchIcon.png"),size=(20,20))
     self.search_button=tk.CTkButton(self.search_frame,width=30,height=30,image=self.iconImg,text='',fg_color="#fff",hover_color="#fff",command=lambda:self.search_orders(self.search_entry.get()))
@@ -167,10 +170,10 @@ class LibrarianMain(MainApp):
     self.book_description_entry = tk.CTkEntry(self.popup, placeholder_text="Book description")
     self.book_author_entry = tk.CTkEntry(self.popup, placeholder_text="Author")
     self.book_cat_entry = tk.CTkEntry(self.popup, placeholder_text="Category")
-    self.book_ISBN_entry = tk.CTkEntry(self.popup, placeholder_text="Book Title")
+    self.book_ISBN_entry = tk.CTkEntry(self.popup, placeholder_text="ISBN")
     self.book_img_entry = tk.CTkEntry(self.popup, placeholder_text="Image Path (optional)")
-    self.book_price_entry = tk.CTkEntry(self.popup, placeholder_text="Book Title")
-    self.book_quantity_entry = tk.CTkEntry(self.popup, placeholder_text="Book Title")
+    self.book_price_entry = tk.CTkEntry(self.popup, placeholder_text="Price")
+    self.book_quantity_entry = tk.CTkEntry(self.popup, placeholder_text="Quantity")
 
     add_button = tk.CTkButton(self.popup, text="Add Book", command=self.add_book_to_list)
 
@@ -186,7 +189,7 @@ class LibrarianMain(MainApp):
 
   def add_book_to_list(self):
     def show_error_message(message):
-      error_message = tk.CTkLabel(master=self.right_frame, text=message, font=('Arial', 14), text_color="red")
+      error_message = tk.CTkLabel(master=self, text=message, font=('Arial', 14), text_color="red")
       error_message.pack(pady=10)
       self.after(3000, error_message.destroy) 
 
@@ -209,8 +212,6 @@ class LibrarianMain(MainApp):
       show_error_message("Book Category cannot be empty.")
     if not self.book_ISBN_entry.get():
       show_error_message("ISBN cannot be empty.")
-    if not self.book_img_path_entry.get():
-      show_error_message("Image Path cannot be empty.")
     if not self.book_price_entry.get():
       show_error_message("Price cannot be empty.")
     if not self.book_quantity_entry.get():
@@ -219,7 +220,10 @@ class LibrarianMain(MainApp):
 
     if book_img_path=="":
       add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,'UI/Assets/Images/books/unavailable.png',book_price,book_quantity,True,True)
-    add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,book_img_path,book_price,book_quantity,True,True)
+    else:
+      add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,book_img_path,book_price,book_quantity,True,True)
+    book_info=read_books()
+    self.list_books(book_info)
     self.popup.destroy()
 
   def list_books(self, book_info):
