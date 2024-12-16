@@ -1,4 +1,5 @@
 class Human(object):
+
         def __init__(self,id,name,age,id_num,address,phone_num):
                 self.__id = id
                 self.name = name
