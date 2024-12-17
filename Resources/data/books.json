@@ -49,7 +49,7 @@
         "image": "UI/Assets/Images/books/81QuEGw8VPL._AC_UF1000,1000_QL80_.webp",
         "price": 10.99,
         "quantity": 11,
-        "borrowable": false,
+        "borrowable": true,
         "buyable": true
     },
     {
@@ -535,20 +535,6 @@
         "image": "UI/Assets/Images/books/81N++5NzORL._AC_UF1000,1000_QL80_.webp",
         "price": 12.99,
         "quantity": 15,
-        "borrowable": true,
-        "buyable": true
-    },
-    {
-        "id": "3050058873",
-        "title": "qwerq",
-        "description": "erwer",
-        "author": "etywer",
-        "status": "available",
-        "categories": "",
-        "ISBN": "rrtert",
-        "image": "UI/Assets/Images/books/unavailable.png",
-        "price": "123",
-        "quantity": "1234",
         "borrowable": true,
         "buyable": true
     }

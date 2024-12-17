@@ -19,3 +19,66 @@ This is a simple Python application that creates a library management app. It us
 ```
 pip install -r requirements.txt
 ```
+
+# UML Diagram
+
+## Book
+
+### Attributes:
+- **id**: int
+- **title**: string
+- **description**: string
+- **author**: string
+- **status**: string
+- **categories**: list
+- **ISBN**: string
+- **image**: string
+- **price**: float
+- **quantity**: int
+- **borrowable**: bool
+- **buyable**: bool
+
+### Methods:
+- `+ get_Book_id(): int`
+- `+ set_Book_id(id: int): void`
+- `+ to_dict(): dict`
+
+---
+
+## Client
+
+### Attributes:
+- **phone_num**: string
+- **id**: int
+- **name**: string
+- **age**: int
+- **id_num**: string
+- **address**: string
+- **reading_history**: list[Order]
+- **orders_num**: int
+
+### Methods:
+- `+ get_reading_history(): list`
+- `+ set_reading_history(list): void`
+- `+ get_orders_num(): int`
+- `+ set_orders_num(num: int): void`
+- `+ to_dict(): dict`
+
+---
+
+## Order
+
+### Attributes:
+- **id**: int
+- **date**: string
+- **client_id**: int
+- **book_id**: int
+- **status**: string
+- **order_type**: string
+- **price**: float
+
+### Methods:
+- `+ get_id(): int`
+- `+ set_id(id: int): void`
+- `+ to_dict(): dict`
+- `+ from_dict(data: dict): Order`

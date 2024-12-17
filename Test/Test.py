@@ -1,7 +1,14 @@
 import unittest
-from Book import Book
-from Client import Client
-from Order import Order
+import os, sys
+current_folder = os.getcwd()
+
+print("Current Folder Path:", current_folder)
+sys.path.insert(2, current_folder)
+
+
+from Resources.Models.Book import Book
+from Resources.Models.Client import Client
+from Resources.Models.Order import Order
 
 
 class TestBook(unittest.TestCase):

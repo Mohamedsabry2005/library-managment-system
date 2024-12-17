@@ -1,7 +1,7 @@
 import customtkinter as tk
 from PIL import Image
 from UI.Auth.AuthAbstractClass import Auth
-from Resources.data.Data import client_sign_up,librarian_sign_up
+from Resources.data.Data import client_sign_up,librarian_sign_up,is_valid_egyptian_id
 class SignUpScreen(Auth):
   def __init__(self):
     super().__init__()
@@ -30,7 +30,8 @@ class SignUpScreen(Auth):
         client_phone_number = self.client_phone_number.get()
         client_identification_number = self.client_identification_number.get()
         client_address = self.client_address.get()
-
+        valid_id=is_valid_egyptian_id(client_identification_number)
+        print(valid_id)
         if not client_name or not client_name.isalpha():
             show_error_message("Client Name cannot be empty.")
             return
@@ -40,8 +41,8 @@ class SignUpScreen(Auth):
         if not client_phone_number or not client_phone_number.isdigit():
             show_error_message("Client Phone Number cannot be empty and only digits.")
             return
-        if not client_identification_number or not client_identification_number.isdigit():
-            show_error_message("Client Identification Number cannot be empty and only digits.")
+        if not client_identification_number or not valid_id:
+            show_error_message("Client Identification Number is invalid.")
             return
         if not client_address:
             show_error_message("Client Address cannot be empty.")
@@ -57,6 +58,7 @@ class SignUpScreen(Auth):
         librarian_phone_number = self.librarian_phone_number.get()
         librarian_employment_type = self.librarian_employment_type.get()
 
+        valid_id=is_valid_egyptian_id(librarian_identification_number)
         if not librarian_name or not librarian_name.isalpha():
             show_error_message("Librarian Name must be characters.")
             return
@@ -66,8 +68,8 @@ class SignUpScreen(Auth):
         if not librarian_phone_number or not librarian_phone_number.isdigit():
             show_error_message("Librarian Phone Number must be numbers.")
             return
-        if not librarian_identification_number:
-            show_error_message("Librarian Identification Number cannot be empty.")
+        if not librarian_identification_number or not valid_id:
+            show_error_message("Librarian Identification Number is invalid.")
             return
         if not librarian_address:
             show_error_message("Librarian Address cannot be empty.")

@@ -169,7 +169,7 @@ def is_valid_egyptian_id(id_num):
     15: "Tenth of Ramadan",
     40: "Gharbeya",
     84: "Fayoum",
-    13: "Qalyubia",
+    14: "Qalyubia",
     48: "Menoufia",
     86: "Minya",
     92: "Wadi El Gadeed - New Valley",
@@ -185,13 +185,13 @@ def is_valid_egyptian_id(id_num):
 }
     # Step 1: Check if the ID has 14 digits
     if not id_num.isdigit() or len(id_num) != 14:
-        return False, "Invalid format: ID must contain exactly 14 digits."
+        return False
     
     # Step 2: Extract and validate the birth date
     century = {"2": "19", "3": "20"}
     first_digit = id_num[0]
     if first_digit not in century:
-        return False, "Invalid century code in ID."
+        return False
     
     year = century[first_digit] + id_num[1:3]
     month = id_num[3:5]
@@ -200,15 +200,15 @@ def is_valid_egyptian_id(id_num):
     try:
         birth_date = datetime.strptime(f"{year}-{month}-{day}", "%Y-%m-%d")
     except ValueError:
-        return False, "Invalid birth date in ID."
+        return False
     
     # Step 3: Validate governorate code
     governorate_code = int(id_num[7:9])
     if governorate_code not in governorates:
-        return False, "Invalid governorate code in ID."
+        return False
     
+    return True
 
-    return True,
 #done
 def client_sign_up(phone_num,name,age,id_num ,address):
     # if is_valid_egyptian_id(id_num):

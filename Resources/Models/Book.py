@@ -45,7 +45,7 @@ class Book:
         """Returns the title of the book."""
         return self.title
 
-    def set_Book_title(self, title):
+    def set_Book_tittle(self, title):
         """Sets the title of the book."""
         self.title = title
 
@@ -53,7 +53,7 @@ class Book:
         """Returns the description of the book."""
         return self.description
 
-    def set_Book_description(self, description):
+    def set_Book_descriptioj(self, description):
         """Sets the description of the book."""
         self.description = description
 

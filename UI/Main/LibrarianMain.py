@@ -99,7 +99,8 @@ class LibrarianMain(MainApp):
     if search_term=="":
       for widget in self.book_cards_frame.winfo_children():
         widget.destroy()
-      self.list_books(book_info)
+      self.book_info=read_books()
+      self.list_books(self.book_info)
     else:
       for book in self.book_info:
           if search_term.lower() in book.title.lower():
@@ -186,10 +187,9 @@ class LibrarianMain(MainApp):
     self.book_price_entry.pack(pady=10, padx=20)
     self.book_quantity_entry.pack(pady=10, padx=20)
     add_button.pack(pady=10, padx=20)
-
-  def add_book_to_list(self):
+  def check_book(self):
     def show_error_message(message):
-      error_message = tk.CTkLabel(master=self, text=message, font=('Arial', 14), text_color="red")
+      error_message = tk.CTkLabel(master=self.popup, text=message, font=('Arial', 14), text_color="red")
       error_message.pack(pady=10)
       self.after(3000, error_message.destroy) 
 
@@ -198,33 +198,54 @@ class LibrarianMain(MainApp):
     book_description = self.book_description_entry.get()
     book_author = self.book_author_entry.get()
     book_cat = self.book_cat_entry.get()
+    book_cat=book_cat.split(' ')
     book_ISBN = self.book_ISBN_entry.get()
     book_img_path = self.book_img_entry.get()
     book_price = self.book_price_entry.get()
     book_quantity = self.book_quantity_entry.get()
     if not self.book_title_entry.get():
       show_error_message("Book Title cannot be empty.")
+      return False
     if not self.book_description_entry.get():
       show_error_message("Book Description cannot be empty.")
+      return False
     if not self.book_author_entry.get() or not book_author.isalpha():
-      show_error_message("Book Author cannot be empty.")
+      show_error_message("Book Author cannot be empty or contain numbers.")
+      return False
     if not self.book_cat_entry.get():
       show_error_message("Book Category cannot be empty.")
-    if not self.book_ISBN_entry.get():
-      show_error_message("ISBN cannot be empty.")
-    if not self.book_price_entry.get():
-      show_error_message("Price cannot be empty.")
-    if not self.book_quantity_entry.get():
-      show_error_message("Quantity cannot be empty.")
+      return False
+    if not self.book_ISBN_entry.get() or not book_ISBN.isdigit():
+      show_error_message("ISBN cannot be empty or container characters.")
+      return False
+    if not self.book_price_entry.get() or not isinstance(float(book_price),(float,int)):
+      show_error_message("Price cannot be empty or contain characters.")
+      return False
+    if not self.book_quantity_entry.get() or not book_quantity.isdigit():
+      show_error_message("Quantity cannot be empty or contain characters.")
+      return False
+    return True
+  def add_book_to_list(self):
+    state=self.check_book()
+    print(state)
+    if state:
+      book_title = self.book_title_entry.get()
+      book_description = self.book_description_entry.get()
+      book_author = self.book_author_entry.get()
+      book_cat = self.book_cat_entry.get()
+      book_cat=book_cat.split(' ')
+      book_ISBN = self.book_ISBN_entry.get()
+      book_img_path = self.book_img_entry.get()
+      book_price = self.book_price_entry.get()
+      book_quantity = self.book_quantity_entry.get()
 
-
-    if book_img_path=="":
-      add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,'UI/Assets/Images/books/unavailable.png',book_price,book_quantity,True,True)
-    else:
-      add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,book_img_path,book_price,book_quantity,True,True)
-    book_info=read_books()
-    self.list_books(book_info)
-    self.popup.destroy()
+      if book_img_path=="":
+        add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,'UI/Assets/Images/books/unavailable.png',float(book_price),int(book_quantity),True,True)
+      else:
+        add_book(book_title,book_description,book_author,"available",book_cat,book_ISBN,book_img_path,float(book_price),int(book_quantity),True,True)
+      book_info=read_books()
+      self.list_books(book_info)
+      self.popup.destroy()
 
   def list_books(self, book_info):
     for widget in self.scroll_frame.winfo_children():

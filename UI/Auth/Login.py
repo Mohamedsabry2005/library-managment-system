@@ -26,6 +26,11 @@ class LoginScreen(Auth):
           error_message.pack(pady=10)
           self.after(3000,error_message.destroy)
         else:
+          if not( ID.startswith('1') or ID.startswith('2') ):
+            error_message = tk.CTkLabel(master=self.right_frame, text="Invalid ID", font=('Arial', 14), text_color="red")
+            error_message.pack(pady=10)
+            self.after(3000,error_message.destroy)
+            return
           human=user_sign_in(ID)
           id=human.get_id()
           if id.startswith("1")==1:
@@ -36,7 +41,6 @@ class LoginScreen(Auth):
             self.destroy()
             x=LibrarianMain(human)
             x.mainloop()
-
 
     self.screen_stack.append('sign_in')
     self.clear_right_frame()
