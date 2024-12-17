@@ -390,7 +390,7 @@
         "ISBN": "9780062457714",
         "image": "UI/Assets/Images/books/71QKQ9mwV7L._AC_UF1000,1000_QL80_.webp",
         "price": 16.99,
-        "quantity": 4,
+        "quantity": 3,
         "borrowable": true,
         "buyable": false
     },
@@ -426,7 +426,7 @@
         "ISBN": "9780142407332",
         "image": "UI/Assets/Images/books/71Bg39CmhoL.webp",
         "price": 8.99,
-        "quantity": 3,
+        "quantity": 2,
         "borrowable": true,
         "buyable": false
     },
@@ -535,6 +535,20 @@
         "image": "UI/Assets/Images/books/81N++5NzORL._AC_UF1000,1000_QL80_.webp",
         "price": 12.99,
         "quantity": 15,
+        "borrowable": true,
+        "buyable": true
+    },
+    {
+        "id": "3050058873",
+        "title": "qwerq",
+        "description": "erwer",
+        "author": "etywer",
+        "status": "available",
+        "categories": "",
+        "ISBN": "rrtert",
+        "image": "UI/Assets/Images/books/unavailable.png",
+        "price": "123",
+        "quantity": "1234",
         "borrowable": true,
         "buyable": true
     }

@@ -50,9 +50,27 @@
                 "status": "active",
                 "order_type": "buy",
                 "price": 17.99
+            },
+            {
+                "id": "1244825924",
+                "date": "2024-12-15 23:25:41.801243",
+                "client_id": "100015001",
+                "book_id": "024",
+                "status": "active",
+                "order_type": "buy",
+                "price": 8.99
+            },
+            {
+                "id": "1523148030",
+                "date": "2024-12-16 09:03:27.522542",
+                "client_id": "100015001",
+                "book_id": "022",
+                "status": "active",
+                "order_type": "buy",
+                "price": 16.99
             }
         ],
-        "orders_num": 18
+        "orders_num": 20
     },
     {
         "phone_num": "0123456701",
